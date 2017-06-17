@@ -33,7 +33,7 @@ const Footer = styled.footer`
   margin-top: auto;
 `
 
-const PageTemplate = ({ header, hero, children, footer, ...props }) => {
+const PageTemplate = ({ header, children, footer, ...props }) => {
   return (
     <Wrapper {...props}>
       <Header>{header}</Header>
