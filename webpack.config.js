@@ -21,7 +21,13 @@ const outputPath = path.join(process.cwd(), 'dist')
 const babel = () => () => ({
   module: {
     rules: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        }
+      },
     ],
   },
 })
@@ -29,9 +35,9 @@ const babel = () => () => ({
 const assets = () => () => ({
   module: {
     rules: [
-      { 
-        test: /\.css$/, 
-        use: ['style-loader', 'css-loader'] 
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       },
       { test: /\.(png|jpe?g|svg|woff2?|ttf|eot)$/, loader: 'url-loader?limit=8000' },
     ],
