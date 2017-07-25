@@ -1,5 +1,3 @@
-// copy from https://github.com/diegohaz/arc/wiki/Webpack
-
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const devServer = require('@webpack-blocks/dev-server2')
@@ -21,13 +19,7 @@ const outputPath = path.join(process.cwd(), 'dist')
 const babel = () => () => ({
   module: {
     rules: [
-      { test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true
-        }
-      },
+      { test: /\.jsx|\.js?$/, exclude: /node_modules/, loader: 'babel-loader' },
     ],
   },
 })
@@ -39,7 +31,7 @@ const assets = () => () => ({
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
-      { test: /\.(png|jpe?g|svg|woff2?|ttf|eot)$/, loader: 'url-loader?limit=8000' },
+      { test: /\.(png|jpe?g|svg|gif|woff2?|ttf|eot)$/, loader: 'url-loader?limit=8192' },
     ],
   },
 })
