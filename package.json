@@ -2,8 +2,12 @@
   "name": "rocket",
   "version": "0.0.1",
   "description": "A web starter kit",
+  "author": "cool4ZBL",
+  "license": "ISC",
   "private": true,
   "scripts": {
+    "precommit": "lint-staged",
+    "format": "prettier --no-semi --single-quote --trailing-comma es5 --jsx-bracket-same-line --write 'src/**/*.{js,jsx}'",
     "start": "npm run dev",
     "env:dev": "cross-env NODE_ENV=development",
     "env:prod": "cross-env NODE_ENV=production",
@@ -15,8 +19,12 @@
     "prebuild": "npm run build:clean && npm run build:copy",
     "build": "npm run env:prod -- webpack"
   },
-  "author": "cool4ZBL",
-  "license": "ISC",
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css,scss}": [
+      "prettier --no-semi --trailing-comma es5 --jsx-bracket-same-line --single-quote --write",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@storybook/addon-actions": "^3.0.0",
     "@storybook/react": "^3.0.0",
@@ -56,7 +64,10 @@
   },
   "dependencies": {
     "history": "^4.6.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.2",
     "lodash": "^4.17.4",
+    "prettier": "^1.5.3",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
